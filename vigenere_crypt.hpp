@@ -10,6 +10,6 @@ class VigenereCrypt
     private:
         unsigned int m_count;
         std::string m_key;
-        std::map<char,int> vigenere_table;
+        std::map<char,unsigned short int> vigenere_table;
 };
 
