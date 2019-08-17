@@ -3,3 +3,5 @@ decrypt
 crypt
 *.o
 *.out
+*.py
+
