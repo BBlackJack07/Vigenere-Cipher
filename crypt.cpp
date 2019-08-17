@@ -1,7 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <thread>
-#include "vigenere_crypt.hpp"
+#include "vigenere.hpp"
 
 int main()
 {
@@ -15,11 +14,7 @@ int main()
     std::cout << "Entrez la phrase à chiffrer : ";
     getline(std::cin, str);
 
-    VigenereCrypt crypt(key);
-
-    std::transform(str.begin(), str.end(), str.begin(), crypt);
-
-    std::cout << std::endl << str << std::endl;
+    std::cout << std::endl << Vigenere::encrypt(str, key) << std::endl;
     
     return 0;
 

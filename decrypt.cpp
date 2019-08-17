@@ -1,7 +1,6 @@
 #include <iostream>
-#include <algorithm>
 #include <thread>
-#include "vigenere_decrypt.hpp"
+#include "vigenere.hpp"
 
 int main()
 {
@@ -15,11 +14,7 @@ int main()
     std::cout << "Entrez la phrase à déchiffrer : ";
     getline(std::cin, str);
 
-    VigenereDecrypt decrypt(key);
-
-    std::transform(str.begin(), str.end(), str.begin(), decrypt);
-
-    std::cout << std::endl << str << std::endl;
+    std::cout << std::endl << Vigenere::decrypt(str, key) << std::endl;
     
     return 0;
 
