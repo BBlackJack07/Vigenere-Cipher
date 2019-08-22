@@ -1,6 +1,8 @@
 #include <iostream>
-#include <thread>
+#include <fstream>
 #include "vigenere.hpp"
+
+std::string read_file(std::string filename);
 
 int main(int argc, char* argv[])
 {
@@ -11,21 +13,32 @@ int main(int argc, char* argv[])
         std::cout << Vigenere::decrypt(msg, key) << std::endl;
     }
 
-    else 
+    else if (argc == 2)
 	{
-        using namespace std::chrono_literals;
         std::string str {};
         std::string key {};
         std::cout << "Entrez la clé : ";
         getline(std::cin, key);
-        std::this_thread::sleep_for(1000ms);
         std::cout << "Entrez la phrase à déchiffrer : ";
-        getline(std::cin, str);
+        
+        std::string filename(argv[1]); 
+        str=read_file(filename);
 
         std::cout << std::endl << Vigenere::decrypt(str, key) << std::endl;
     }
 
     return 0;
 
+}
+
+std::string read_file(std::string filename)
+{
+    std::ifstream f(filename);
+    std::string line;
+    std::string content;
+    while( getline(f, line) )
+        content += line + "\n";
+    f.close();
+    return content;
 }
 
