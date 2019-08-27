@@ -19,7 +19,6 @@ int main(int argc, char* argv[])
         std::string key {};
         std::cout << "Entrez la clé : ";
         getline(std::cin, key);
-        std::cout << "Entrez la phrase à déchiffrer : ";
         
         std::string filename(argv[1]); 
         str=read_file(filename);

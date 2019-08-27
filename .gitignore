@@ -1,4 +1,3 @@
-Makefile
 decrypt
 crypt
 *.o
