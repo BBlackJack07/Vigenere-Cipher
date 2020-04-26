@@ -1,6 +1,5 @@
-decrypt
-crypt
 *.o
 *.out
 *.py
+vigenere
 out
