@@ -3,4 +3,4 @@ crypt
 *.o
 *.out
 *.py
-
+out
