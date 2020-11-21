@@ -6,6 +6,9 @@ VigenereCipher::VigenereCipher(std::string key, std::string mode)
 {
     m_key = key;
     m_count = 0;
+    
+    for (unsigned int i {0}; i<=AVALAIBLE_CHARS.size();i++)
+        m_alphabet_map.insert(std::pair<char, int>(AVALAIBLE_CHARS[i],i));
 
     if(mode == "encrypt") 
         m_mode = true;
@@ -15,11 +18,9 @@ VigenereCipher::VigenereCipher(std::string key, std::string mode)
         throw "Mode '" + mode + "' doesn't exist!";
 }
 
-int VigenereCipher::index(char c)
+int VigenereCipher::c_to_i(const char c)
 {
-    for (unsigned short int i {0}; i < AVALAIBLE_CHARS.size(); i++)
-        if (c == AVALAIBLE_CHARS[i]) { return i; }
-    return -1;
+    return m_alphabet_map[c];
 }
 
 char VigenereCipher::operator()(const char &char_to_encrypt)
@@ -30,19 +31,16 @@ char VigenereCipher::operator()(const char &char_to_encrypt)
     
     if (isalnum(c) || c == ' ')
     {
-        shift=index(m_key[m_count%m_key.size()]);
+        shift=c_to_i(m_key[m_count%m_key.size()]);
 
         if(m_mode)
         {
-            r=AVALAIBLE_CHARS[(index(c) + shift) % AVALAIBLE_CHARS.size()];
+            r=AVALAIBLE_CHARS[(c_to_i(c) + shift) % AVALAIBLE_CHARS.size()];
         }
         
         else
         {
-            if (index(c)-shift >= 0 )
-                r=AVALAIBLE_CHARS[index(c)-shift];
-            else
-                r=AVALAIBLE_CHARS[index(c)-shift+AVALAIBLE_CHARS.size()];
+            r=AVALAIBLE_CHARS[(c_to_i(c)-shift) % AVALAIBLE_CHARS.size()];
         }
     }
 
