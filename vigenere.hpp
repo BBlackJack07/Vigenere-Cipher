@@ -1,5 +1,6 @@
 #include <string>
 #include <algorithm>
+#include <map>
 
 namespace Vigenere
 {
@@ -19,6 +20,7 @@ namespace Vigenere
             unsigned int m_count;
             std::string m_key;
             bool m_mode;
+            std::map<char,int> m_alphabet_map;
     };
 
 }
