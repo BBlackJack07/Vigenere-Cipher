@@ -29,7 +29,7 @@ char VigenereCipher::operator()(const char &char_to_encrypt)
     char r {};
     int shift {};
     
-    if (isalnum(c) || c == ' ')
+    if (isalnum(c))
     {
         shift=c_to_i(m_key[m_count%m_key.size()]);
 
@@ -42,12 +42,12 @@ char VigenereCipher::operator()(const char &char_to_encrypt)
         {
             r=AVALAIBLE_CHARS[(c_to_i(c)-shift) % AVALAIBLE_CHARS.size()];
         }
+        m_count++;
     }
 
     else
         r=c;
     
-    m_count++;
     return r;
 }
 
